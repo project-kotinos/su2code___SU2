@@ -26,5 +26,3 @@ build_targets:
       - make install
 
 
-
-      # meaningless commit for test 
