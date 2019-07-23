@@ -1,6 +1,6 @@
 dependencies:
   build:
-    - python:3.6
+    - python:3.6.0
 
 build_targets:
   - name: default
@@ -25,7 +25,7 @@ build_targets:
       - make -j 4
       - make install
 ci:
-   builds:
+  builds:
     - name: build
-      build_target: default
+        build_target: default
 
