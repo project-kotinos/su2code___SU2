@@ -1,3 +1,31 @@
+dependencies:
+  build:
+    - python:3.6
 
-
+build_targets:
+  - name: default
+    environment:
+      - CXXFLAGS="-O3 -Wall -Wextra -Wno-unused-parameter -Wno-empty-body -Wno-format-security" 
+      - CONFIGURE_COMMAND="./preconfigure.py --prefix=$TRAVIS_BUILD_DIR --enable-PY_WRAPPER --disable-tecio"
+    commands:
+      - sudo apt-get update -qq
+      - sudo apt-get install -qq build-essential libopenmpi-dev
+      - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+      - bash miniconda.sh -b -p $HOME/miniconda
+      - export PATH="$HOME/miniconda/bin:$PATH"
+      - hash -r
+      - conda config --set always_yes yes --set changeps1 no
+      - conda update -q conda
+      - conda install -q python=$TRAVIS_PYTHON_VERSION numpy scipy mpi4py swig
+      - test -n $CC  && unset CC
+      - test -n $CXX && unset CXX
+      - ./bootstrap
+      - autoreconf -f -i
+      - $CONFIGURE_COMMAND
+      - make -j 4
+      - make install
+ci:
+   builds:
+    - name: build
+      build_target: default
 
