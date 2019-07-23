@@ -11,18 +11,10 @@ build_targets:
     commands:
       - apt-get update -qq
       - apt-get install -qq build-essential libopenmpi-dev
-      - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-      - bash miniconda.sh -b -p $HOME/miniconda
-      - export PATH="$HOME/miniconda/bin:$PATH"
-      - hash -r
-      - conda config --set always_yes yes --set changeps1 no
-      - conda update -q conda
-      - conda install -q python=$TRAVIS_PYTHON_VERSION numpy scipy mpi4py swig
-      - test -n $CC  && unset CC
-      - test -n $CXX && unset CXX
+      - pip install numpy scipy mpi4py swig
       - ./bootstrap
       - autoreconf -f -i
-      - $CONFIGURE_COMMAND
+      - ./preconfigure.py --prefix=/workspace/build --enable-PY_WRAPPER --disable-tecio
       - make -j 4
       - make install
 ci:
