@@ -11,7 +11,7 @@ build_targets:
     commands:
       - apt-get update -qq
       - apt-get install -qq build-essential libopenmpi-dev
-      - pip install numpy scipy mpi4py swig
+      - pip install numpy scipy mpi4py
       - ./bootstrap
       - autoreconf -f -i
       - ./preconfigure.py --prefix=/workspace/build --enable-PY_WRAPPER --disable-tecio
