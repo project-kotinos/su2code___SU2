@@ -23,8 +23,7 @@ build_targets:
       - ./preconfigure.py --prefix=/workspace/build --enable-PY_WRAPPER --disable-tecio
       - make -j 4
       - make install
-    tags:
-      channel: experimental 
+
 ci:
   builds:
     - name: build
