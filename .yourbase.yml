@@ -11,9 +11,11 @@ build_targets:
     commands:
       - apt-get -y update -qq
       - apt-get -y install -qq build-essential libopenmpi-dev
+      # mpi4py seems to be here, also the anaconda channel?
+      - conda config --add channels intel
       - conda install python=3.6 numpy scipy mpi4py swig
       # to avoid interference with MPI
-      #- test -n $CC  && unset CC
+      #- test -n $CC  && unset CC:
       #- test -n $CXX && unset CXX
       - ./bootstrap
       - autoreconf -f -i
