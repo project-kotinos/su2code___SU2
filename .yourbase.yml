@@ -31,7 +31,6 @@ build_targets:
       
       # Enter the SU2/TestCases/ directory, which is now ready to run
       - bash testcase.sh
-      - python serial_regression.py
 
 ci:
   builds:
