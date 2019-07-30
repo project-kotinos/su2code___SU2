@@ -22,12 +22,9 @@ build_targets:
       - python ./preconfigure.py --prefix=/workspace/build --enable-PY_WRAPPER --disable-tecio
       - make -j 4
       - make install
-    
       - bash testcase.sh
-
 ci:
   builds:
     - name: build
       build_target: default
 
-# another edit

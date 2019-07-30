@@ -8,3 +8,6 @@ git clone -b develop https://github.com/su2code/su2code.github.io ./Tutorials
 cd TestCases/
 echo "Directory moved & now running script"
 python serial_regression.py
+python parallel_regression_AD.py
+python serial_regression_AD.py
+python parallel_regression.py
